@@ -25,20 +25,13 @@ const config = {
   ],
   author: "Muhammad Zaid Mohsin",
   email: "zaidmohsin45@gmail.com",
-  // site: "https://nareshkhatri.site",
+  site: "https://portfolio-git-main-zaidmohsin457s-projects.vercel.app/",
 
-  // // for github stars button
-  // githubUsername: "naresh-khatri",
-  // githubRepo: "3d-portfolio",
-
-  // get ogImg() {
-  //   return this.site + "/assets/seo/og-image.png";
-  // },
+  get ogImg() {
+    return this.site + "/assets/seo/og-image.png";
+  },
   social: {
-    // twitter: "https://x.com/nothotchaddi",
     linkedin: "https://www.linkedin.com/in/zaidmohsin457/",
-    // instagram: "https://www.instagram.com/hotchaddi",
-    // facebook: "https://www.facebook.com/HotChaddi/",
     github: "https://github.com/zaidmohsin457",
   },
 };

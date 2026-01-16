@@ -130,12 +130,11 @@ const FloatingDockDesktop = ({
           mouseX.set(e.pageX);
           setShowHint(false);
         }}
+        onTouchStart={() => setShowHint(false)}
         onMouseLeave={() => mouseX.set(Infinity)}
         className={cn(
-          // "hidden md:flex",
-          "flex gap-2 md:gap-4",
-          "mx-auto h-16 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
-          // "blur-sm brightness-50",
+          "flex gap-1 sm:gap-2 md:gap-4",
+          "mx-auto h-12 sm:h-14 md:h-16 items-end rounded-xl sm:rounded-2xl bg-gray-50 dark:bg-neutral-900 px-2 sm:px-3 md:px-4 pb-2 sm:pb-3",
           className
         )}
       >
@@ -186,14 +185,21 @@ function IconContainer({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  // Smaller sizes on mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const baseSize = isMobile ? 32 : 40;
+  const hoverSize = isMobile ? 48 : 80;
+  const baseIconSize = isMobile ? 16 : 20;
+  const hoverIconSize = isMobile ? 24 : 40;
+  
+  let widthTransform = useTransform(distance, [-150, 0, 150], [baseSize, hoverSize, baseSize]);
+  let heightTransform = useTransform(distance, [-150, 0, 150], [baseSize, hoverSize, baseSize]);
 
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [baseIconSize, hoverIconSize, baseIconSize]);
   let heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
-    [20, 40, 20]
+    [baseIconSize, hoverIconSize, baseIconSize]
   );
 
   let width = useSpring(widthTransform, {

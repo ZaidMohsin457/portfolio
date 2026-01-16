@@ -5,13 +5,12 @@ import { ReactNode } from "react"
 
 export const SectionHeader = ({ id, title, desc, className }: { id: string, title: string | ReactNode, desc?: string, className?: string }) => {
   return (
-
-    <div className={cn("top-[70px] sticky mb-96", className)}>
+    <div className={cn("top-[60px] sm:top-[70px] sticky mb-48 sm:mb-72 md:mb-96 px-4 sm:px-6", className)}>
       <Link href={`#${id}`}>
         <BoxReveal width="100%">
           <h2
             className={cn(
-              "text-4xl text-center md:text-7xl font-bold",
+              "text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-center font-bold",
               "text-foreground"
             )}
           >
@@ -19,9 +18,11 @@ export const SectionHeader = ({ id, title, desc, className }: { id: string, titl
           </h2>
         </BoxReveal>
       </Link>
-      <p className="mx-auto line-clamp-4 max-w-3xl font-normal text-base text-center text-muted-foreground">
-        {desc}
-      </p>
+      {desc && (
+        <p className="mx-auto line-clamp-4 max-w-3xl font-normal text-sm sm:text-base text-center text-muted-foreground mt-2">
+          {desc}
+        </p>
+      )}
     </div>
   )
 }

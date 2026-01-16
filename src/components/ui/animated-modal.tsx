@@ -124,7 +124,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden pointer-events-auto",
+              "w-[95vw] sm:w-[90vw] md:w-auto min-h-[50%] max-h-[95vh] sm:max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 rounded-xl sm:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden pointer-events-auto",
               className
             )}
             initial={{
@@ -151,7 +151,7 @@ export const ModalBody = ({
             }}
           >
             <CloseIcon />
-            <ScrollArea className="h-[80dvh] w-full rounded-md border">
+            <ScrollArea className="h-[85dvh] sm:h-[80dvh] w-full rounded-md border">
               {children}
             </ScrollArea>
           </motion.div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState, useCallback } from "react";
 import { Application, SPEObject, SplineEvent } from "@splinetool/runtime";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,9 +19,11 @@ const AnimatedBackground = () => {
   const { isLoading, bypassLoading } = usePreloader();
   const { theme } = useTheme();
   const isMobile = useMediaQuery("(max-width: 767px)");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
   const splineContainer = useRef<HTMLDivElement>(null);
   const [splineApp, setSplineApp] = useState<Application>();
   const selectedSkillRef = useRef<Skill | null>(null);
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
 
   const { playPressSound, playReleaseSound } = useSounds();
 
@@ -115,14 +117,14 @@ const AnimatedBackground = () => {
         scrub: true,
         onEnter: () => {
           setActiveSection(targetSection);
-          const state = getKeyboardState({ section: targetSection, isMobile });
+          const state = getKeyboardState({ section: targetSection, isMobile, isTablet });
           gsap.to(kbd.scale, { ...state.scale, duration: 1 });
           gsap.to(kbd.position, { ...state.position, duration: 1 });
           gsap.to(kbd.rotation, { ...state.rotation, duration: 1 });
         },
         onLeaveBack: () => {
           setActiveSection(prevSection);
-          const state = getKeyboardState({ section: prevSection, isMobile, });
+          const state = getKeyboardState({ section: prevSection, isMobile, isTablet });
           gsap.to(kbd.scale, { ...state.scale, duration: 1 });
           gsap.to(kbd.position, { ...state.position, duration: 1 });
           gsap.to(kbd.rotation, { ...state.rotation, duration: 1 });
@@ -137,14 +139,18 @@ const AnimatedBackground = () => {
     if (!kbd) return;
 
     // Initial state
-    const heroState = getKeyboardState({ section: "hero", isMobile });
+    const heroState = getKeyboardState({ section: "hero", isMobile, isTablet });
     gsap.set(kbd.scale, heroState.scale);
     gsap.set(kbd.position, heroState.position);
 
-    // Section transitions
-    createSectionTimeline("#skills", "skills", "hero");
-    createSectionTimeline("#projects", "projects", "skills", "top 70%");
-    createSectionTimeline("#contact", "contact", "projects", "top 30%");
+    // Section transitions with mobile-optimized triggers
+    const skillsStart = isMobile ? "top 60%" : "top 50%";
+    const projectsStart = isMobile ? "top 80%" : "top 70%";
+    const contactStart = isMobile ? "top 40%" : "top 30%";
+    
+    createSectionTimeline("#skills", "skills", "hero", skillsStart);
+    createSectionTimeline("#projects", "projects", "skills", projectsStart);
+    createSectionTimeline("#contact", "contact", "projects", contactStart);
   };
 
   const getBongoAnimation = () => {
@@ -235,13 +241,17 @@ const AnimatedBackground = () => {
     kbd.visible = true;
     setKeyboardRevealed(true);
 
-    const currentState = getKeyboardState({ section: activeSection, isMobile });
+    const currentState = getKeyboardState({ section: activeSection, isMobile, isTablet });
+    
+    // Set initial position for mobile to ensure visibility
+    gsap.set(kbd.position, currentState.position);
+    
     gsap.fromTo(
       kbd.scale,
       { x: 0.01, y: 0.01, z: 0.01 },
       {
         ...currentState.scale,
-        duration: 1.5,
+        duration: isMobile ? 1 : 1.5,
         ease: "elastic.out(1, 0.6)",
       }
     );
@@ -249,9 +259,9 @@ const AnimatedBackground = () => {
     const allObjects = splineApp.getAllObjects();
     const keycaps = allObjects.filter((obj) => obj.name === "keycap");
 
-    await sleep(900);
+    await sleep(isMobile ? 600 : 900);
 
-    if (isMobile) {
+    if (isMobile || isTablet) {
       const mobileKeyCaps = allObjects.filter((obj) => obj.name === "keycap-mobile");
       mobileKeyCaps.forEach((keycap) => { keycap.visible = true; });
     } else {
@@ -262,9 +272,11 @@ const AnimatedBackground = () => {
       });
     }
 
+    // Optimize animation timing for mobile
+    const animDelay = isMobile ? 40 : 70;
     keycaps.forEach(async (keycap, idx) => {
       keycap.visible = false;
-      await sleep(idx * 70);
+      await sleep(idx * animDelay);
       keycap.visible = true;
       gsap.fromTo(
         keycap.position,
@@ -288,7 +300,7 @@ const AnimatedBackground = () => {
       keycapAnimationsRef.current?.stop()
     }
 
-  }, [splineApp, isMobile]);
+  }, [splineApp, isMobile, isTablet]);
 
   // Handle keyboard text visibility based on theme and section
   useEffect(() => {
@@ -312,18 +324,20 @@ const AnimatedBackground = () => {
       textMobileLight.visible = mLight;
     };
 
+    const useMobileText = isMobile || isTablet;
+
     if (activeSection !== "skills") {
       setVisibility(false, false, false, false);
     } else if (theme === "dark") {
-      isMobile
+      useMobileText
         ? setVisibility(false, false, false, true)
         : setVisibility(false, true, false, false);
     } else {
-      isMobile
+      useMobileText
         ? setVisibility(false, false, true, false)
         : setVisibility(true, false, false, false);
     }
-  }, [theme, splineApp, isMobile, activeSection]);
+  }, [theme, splineApp, isMobile, isTablet, activeSection]);
 
   useEffect(() => {
     if (!selectedSkill || !splineApp) return;
@@ -425,13 +439,41 @@ const AnimatedBackground = () => {
     updateKeyboardTransform();
   }, [splineApp, isLoading, activeSection]);
 
+  // Handle window resize for responsive keyboard positioning
+  useEffect(() => {
+    if (!splineApp) return;
+    
+    const handleResize = () => {
+      const kbd = splineApp.findObjectByName("keyboard");
+      if (!kbd) return;
+      
+      const state = getKeyboardState({ section: activeSection, isMobile, isTablet });
+      gsap.to(kbd.scale, { ...state.scale, duration: 0.5 });
+      gsap.to(kbd.position, { ...state.position, duration: 0.5 });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [splineApp, activeSection, isMobile, isTablet]);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={
+      <div className="fixed inset-0 flex items-center justify-center bg-background/50 backdrop-blur-sm z-0">
+        <div className="animate-pulse text-muted-foreground">Loading 3D Scene...</div>
+      </div>
+    }>
       <Spline
-        className="w-full h-full fixed"
+        className="w-full h-full fixed inset-0 z-0"
+        style={{ 
+          touchAction: 'pan-y',
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none'
+        }}
         ref={splineContainer}
         onLoad={(app: Application) => {
           setSplineApp(app);
+          setIsSplineLoaded(true);
           bypassLoading();
         }}
         scene="/assets/skills-keyboard.spline"

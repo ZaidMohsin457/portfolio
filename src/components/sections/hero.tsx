@@ -26,8 +26,8 @@ const HeroSection = () => {
           className={cn(
             "min-h-[50dvh] md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
-            "flex flex-col justify-center items-center md:items-start",
-            "px-6 py-16 sm:px-8 sm:py-20 md:p-20 lg:p-24 xl:p-28"
+            "flex flex-col justify-start md:justify-center items-center md:items-start",
+            "pt-20 pb-8 px-6 sm:pt-24 sm:pb-12 sm:px-8 md:pt-20 md:pb-20 md:px-20 lg:p-24 xl:p-28"
           )}
         >
           {!isLoading && (

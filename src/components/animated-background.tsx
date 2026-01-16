@@ -465,10 +465,7 @@ const AnimatedBackground = () => {
       <Spline
         className="w-full h-full fixed inset-0 z-0"
         style={{ 
-          touchAction: 'pan-y',
-          WebkitTouchCallout: 'none',
-          WebkitUserSelect: 'none',
-          userSelect: 'none'
+          pointerEvents: 'auto'
         }}
         ref={splineContainer}
         onLoad={(app: Application) => {

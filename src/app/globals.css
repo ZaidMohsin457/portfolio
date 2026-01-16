@@ -100,16 +100,8 @@ html {
   .canvas-overlay-mode h6,
   .canvas-overlay-mode span,
   .canvas-overlay-mode svg,
-  .canvas-overlay-mode div[class*="card"],
-  .canvas-overlay-mode section {
+  .canvas-overlay-mode div[class*="card"] {
     pointer-events: auto;
-  }
-
-  /* Ensure Spline canvas doesn't block touch on mobile */
-  @media (max-width: 767px) {
-    canvas {
-      touch-action: pan-y !important;
-    }
   }
 
   /* Smooth scrolling for touch devices */
@@ -125,14 +117,6 @@ html {
   /* Ensure 3D content doesn't cause horizontal scroll */
   main {
     overflow-x: hidden;
-  }
-
-  /* Better touch targets on mobile */
-  button, 
-  a, 
-  [role="button"] {
-    min-height: 44px;
-    min-width: 44px;
   }
 
   /* Prevent text selection during scroll */

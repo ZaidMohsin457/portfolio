@@ -28,6 +28,16 @@ export enum SkillNames {
   ML="ml",
   NLP="nlp",
   TechnicalWriting="technicalwriting",
+  MARKETING="marketing",
+  SALES="sales",
+  COMMUNICATION="communication",
+  LEADERSHIP="leadership",
+  TEAMWORK="teamwork",
+  TIME_MANAGEMENT="time_management",
+  PROBLEM_SOLVING="problem_solving",
+  CREATIVITY="creativity",
+  ORGANIZATION="organization",
+  DETAIL_ORIENTED="detail_oriented", 
 }
 export type Skill = {
   id: number;
@@ -270,6 +280,86 @@ using use = useUsing("use")`,
     color: "#4b8bbe",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/technicalwriting/technicalwriting-original.svg",
   },
+  [SkillNames.MARKETING]: {
+    id: 29,
+    name: "marketing",
+    label: "Marketing",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/marketing/marketing-original.svg",
+  },
+  [SkillNames.SALES]: {
+    id: 30,
+    name: "sales",
+    label: "Sales",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sales/sales-original.svg",
+  },
+  [SkillNames.COMMUNICATION]: {
+    id: 31,
+    name: "communication",
+    label: "Communication",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/communication/communication-original.svg",
+  },
+  [SkillNames.LEADERSHIP]: {
+    id: 32,
+    name: "leadership",
+    label: "Leadership",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/leadership/leadership-original.svg",
+  },
+  [SkillNames.TEAMWORK]: {
+    id: 33,
+    name: "teamwork",
+    label: "Teamwork",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/teamwork/teamwork-original.svg",
+  },
+  [SkillNames.TIME_MANAGEMENT]: {
+    id: 34,
+    name: "time_management",
+    label: "Time Management",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/time_management/time_management-original.svg",
+  },
+  [SkillNames.PROBLEM_SOLVING]: { 
+    id: 35,
+    name: "problem_solving",
+    label: "Problem Solving",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/problem_solving/problem_solving-original.svg",
+  },
+  [SkillNames.CREATIVITY]: {
+    id: 36,
+    name: "creativity",
+    label: "Creativity",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/creativity/creativity-original.svg",
+  },
+  [SkillNames.ORGANIZATION]: {
+    id: 37,
+    name: "organization",
+    label: "Organization",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/organization/organization-original.svg",
+  },
+  [SkillNames.DETAIL_ORIENTED]: {
+    id: 38,
+    name: "detail_oriented",
+    label: "Detail Oriented",
+    shortDescription: "the art of making complex things simple, period! 📝✍️",
+    color: "#4b8bbe",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/detail_oriented/detail_oriented-original.svg",
+  },
 };
 
 export type Experience = {
@@ -285,9 +375,32 @@ export type Experience = {
 export const EXPERIENCE: Experience[] = [
   {
     id: 1,
+    startDate: "January 2026",
+    endDate: "Present",
+    title: "Campus Ambassador",
+    company: "Salesflo",
+    description: [
+      "Executed strategic campus outreach campaigns to bridge the gap between academia and the corporate SaaS industry.",
+      "Collaborated with cross-functional teams to drive brand awareness, successfully enrolling 300 peers in company-led mentorship programs."
+    ],
+    skills: [
+      SkillNames.MARKETING,
+      SkillNames.SALES,
+      SkillNames.COMMUNICATION,
+      SkillNames.LEADERSHIP,
+      SkillNames.TEAMWORK,
+      SkillNames.TIME_MANAGEMENT,
+      SkillNames.PROBLEM_SOLVING,
+      SkillNames.CREATIVITY,
+      SkillNames.ORGANIZATION,
+      SkillNames.DETAIL_ORIENTED, 
+    ],
+  },
+  {
+    id: 2,
     startDate: "July 2025",
     endDate: "August 2025",
-    title: "Cloud App Development Intern",
+    title: "Cloud App Development and Maintenance Intern",
     company: "Systems Limited",
     description: [
       "Developed a full-stack app using Vue.js, Node.js, Express.js, and Firebase, achieving 100% real-time data sync.",
@@ -300,17 +413,15 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.EXPRESS,
     ],
   },
-    {
-    id: 2,
+  {    
+    id: 3,
     startDate: "June 2025",
-    endDate: "August 2024",
+    endDate: "August 2025",
     title: "Summer Research Intern",
     company: "University of Europe for Applied Sciences",
     description: [
-      "Researched lightweight ASR systems using Mozilla Common Voice (5,000+ clips) for model training.",
-      "Built a BiLSTM model that cut WER from 71% to 38% and CER from 35% to 22% in 10 epochs.",
-      "Benchmarked against wav2vec 2.0 & Whisper, achieving 96% fewer parameters with competitive accuracy.",
-      "Co-authored a paper on an edge-deployable ASR pipeline, reaching 23.5% WER within 1 GB GPU memory.",
+      "In this research, we developed a lightweight pipeline using LoRA and TinyLlama-1.1B to solve this. By fine-tuning on a specific dataset of job-related content, we managed to cut computational requirements by 70% while maintaining a high standard of output quality (85% correctness). This project offers a replicable framework for developers looking to build efficient, domain-specific text generators.",
+
     ],
     skills: [
       SkillNames.ML,
@@ -319,9 +430,9 @@ export const EXPERIENCE: Experience[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     startDate: "January 2025",
-    endDate: "February 2024",
+    endDate: "February 2025",
     title: "Backend Developer",
     company: "Talpur Foundation Pakistan",
     description: [

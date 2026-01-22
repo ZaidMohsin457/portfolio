@@ -381,7 +381,7 @@ export const EXPERIENCE: Experience[] = [
     company: "Salesflo",
     description: [
       "Executed strategic campus outreach campaigns to bridge the gap between academia and the corporate SaaS industry.",
-      "Collaborated with cross-functional teams to drive brand awareness, successfully enrolling 300 peers in company-led mentorship programs."
+      "Collaborated with cross-functional teams to drive brand awareness, successfully enrolling 70% of peers in company-led mentorship programs."
     ],
     skills: [
       SkillNames.MARKETING,

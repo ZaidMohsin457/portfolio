@@ -25,7 +25,7 @@ const config = {
   ],
   author: "Muhammad Zaid Mohsin",
   email: "zaidmohsin45@gmail.com",
-  site: "https://portfolio-git-main-zaidmohsin457s-projects.vercel.app/",
+  site: "https://portfolio-zaid457.vercel.app/",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";

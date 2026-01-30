@@ -67,7 +67,7 @@ const HeroSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </BlurIn>
-                
+
                 <BlurIn delay={1.2}>
                   <p
                     className={cn(
@@ -80,11 +80,11 @@ const HeroSection = () => {
                   </p>
                 </BlurIn>
               </div>
-              
+
               <div className="mt-6 md:mt-8 flex flex-col gap-3 w-full sm:w-fit">
                 <Link
                   href={
-                    "https://drive.google.com/file/d/1dv59zXE_NyholVqLSk9f003NergORrTH/view?usp=drive_link"
+                    "https://drive.google.com/file/d/1F1PFGPzgVzUNTEccoK-ZwgLf_mVSpH1f/view?usp=drive_link"
                   }
                   target="_blank"
                   className="flex-1"
@@ -96,7 +96,7 @@ const HeroSection = () => {
                     </Button>
                   </BoxReveal>
                 </Link>
-                
+
                 <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3">
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
@@ -113,7 +113,7 @@ const HeroSection = () => {
                       <p>pls 🥹 🙏</p>
                     </TooltipContent>
                   </Tooltip>
-                  
+
                   <div className="flex items-center gap-2">
                     <Link
                       href={config.social.github}
@@ -139,11 +139,11 @@ const HeroSection = () => {
             </div>
           )}
         </div>
-        
+
         {/* Empty column for 3D keyboard space on desktop */}
         <div className="hidden md:block col-span-1"></div>
       </div>
-      
+
       <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2">
         <ScrollDownIcon />
       </div>

@@ -24,20 +24,20 @@ export enum SkillNames {
   AWS = "aws",
   VERCEL = "vercel",
   CPLUS = "cpp",
-  C="c",
-  ML="ml",
-  NLP="nlp",
-  TechnicalWriting="technicalwriting",
-  MARKETING="marketing",
-  SALES="sales",
-  COMMUNICATION="communication",
-  LEADERSHIP="leadership",
-  TEAMWORK="teamwork",
-  TIME_MANAGEMENT="time_management",
-  PROBLEM_SOLVING="problem_solving",
-  CREATIVITY="creativity",
-  ORGANIZATION="organization",
-  DETAIL_ORIENTED="detail_oriented", 
+  C = "c",
+  ML = "ml",
+  NLP = "nlp",
+  TechnicalWriting = "technicalwriting",
+  MARKETING = "marketing",
+  SALES = "sales",
+  COMMUNICATION = "communication",
+  LEADERSHIP = "leadership",
+  TEAMWORK = "teamwork",
+  TIME_MANAGEMENT = "time_management",
+  PROBLEM_SOLVING = "problem_solving",
+  CREATIVITY = "creativity",
+  ORGANIZATION = "organization",
+  DETAIL_ORIENTED = "detail_oriented",
 }
 export type Skill = {
   id: number;
@@ -328,7 +328,7 @@ using use = useUsing("use")`,
     color: "#4b8bbe",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/time_management/time_management-original.svg",
   },
-  [SkillNames.PROBLEM_SOLVING]: { 
+  [SkillNames.PROBLEM_SOLVING]: {
     id: 35,
     name: "problem_solving",
     label: "Problem Solving",
@@ -393,7 +393,7 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.PROBLEM_SOLVING,
       SkillNames.CREATIVITY,
       SkillNames.ORGANIZATION,
-      SkillNames.DETAIL_ORIENTED, 
+      SkillNames.DETAIL_ORIENTED,
     ],
   },
   {
@@ -413,7 +413,7 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.EXPRESS,
     ],
   },
-  {    
+  {
     id: 3,
     startDate: "June 2025",
     endDate: "August 2025",
@@ -446,6 +446,52 @@ export const EXPERIENCE: Experience[] = [
       SkillNames.VERCEL,
     ],
   },
+];
+
+
+export type Publication = {
+  id: number;
+  title: string;
+  conference: string;
+  date: string;
+  description: string;
+  link: string;
+};
+
+export const PUBLICATIONS: Publication[] = [
+  {
+    id: 1,
+    title: "Parameter-Efficient Fine-Tuning of Compact Language Models for Professional LinkedIn Post Generation",
+    conference: "22nd International Conference on Frontiers of Information Technology (FIT 2025)",
+    date: "2026",
+    description: "While generative AI has transformed content creation, professional platforms like LinkedIn require a specific tone and context that general models often miss or are too expensive to generate at scale. In this research, we developed a lightweight pipeline using LoRA and TinyLlama-1.1B to solve this. By fine-tuning on a specific dataset of job-related content, we managed to cut computational requirements by 70% while maintaining a high standard of output quality (85% correctness). This project offers a replicable framework for developers looking to build efficient, domain-specific text generators.",
+    link: "https://ieeexplore.ieee.org/document/11333715"
+  },
+  {
+    id: 2,
+    title: "Efficient Reinforcement Learning for Autonomous Planetary Landing Tasks",
+    conference: "20th International Conference on Emerging Technologies (ICET-25)",
+    date: "2026",
+    description: "Autonomous lunar landing is a notoriously difficult control challenge, requiring split-second decisions in uncertain terrain with strictly limited computational resources. Traditional control methods can struggle with these real-time demands, so this research investigates a more adaptive solution using Reinforcement Learning.In this paper, I developed a Deep Q-Network (DQN) agent within the Gymnasium LunarLander-v3 environment to tackle these flight dynamics. Through extensive experimentation with different neural architectures—ranging from Tiny to Deep—I identified that a Wide network structure (128–128 layers) offered the optimal balance of performance and efficiency.The Result: The final agent achieved a 93% landing success rate with an average reward of 262.89, outperforming other configurations. This study proves that lightweight, well-tuned RL agents can handle complex control tasks effectively, providing a scalable blueprint for future applications in autonomous space robotics.",
+    link: "https://ieeexplore.ieee.org/document/11321424"
+  },
+  {
+    id: 3,
+    title: "Mobile-Friendly Dog Breed Recognition Using ResNet-18 with Structured Pruning",
+    conference: "20th International Conference on Emerging Technologies (ICET-25)",
+    date: "2026",
+    description: "Fine-grained image classification—like distinguishing between a Siberian Husky and an Eskimo Dog—is notoriously difficult due to extreme visual similarities and limited data. In this study, I set out to determine the best approach for balancing high accuracy with the computational efficiency required for real-world apps.I conducted a direct comparison between a custom CNN and ResNet-18 using the Stanford Dogs dataset. The pre-trained ResNet-18 proved significantly better at detecting subtle breed differences, achieving 80.82% accuracy compared to 66.46% for the custom architecture.The Key Innovation: To make this feasible for mobile deployment, I optimized the ResNet model by pruning 30% of its channels. This successfully reduced the inference time to just 64ms on a mobile CPU with less than a 1.5% drop in accuracy. This project demonstrates a practical, scalable path for building robust image classifiers capable of running on edge devices.",
+    link: "https://ieeexplore.ieee.org/document/11321358"
+  },
+  {
+    id: 4,
+    title: "Algorithmic Insights into the N-Queens Problem: A Comparative Study Across Scales",
+    conference: "20th International Conference on Emerging Technologies (ICET-25)",
+    date: "2026",
+    description: "The N-Queens problem is a classic benchmark for constraint satisfaction, specifically because the difficulty explodes exponentially as the board size increases. In this study, I wanted to move beyond theory and stress-test four distinct algorithms—Depth-First Search, Hill Climbing, Simulated Annealing, and Genetic Algorithms—on board sizes up to 200×200.The Findings: While exhaustive methods like DFS crumbled under resource demands and simple heuristics often got stuck in local optima, Simulated Annealing emerged as the clear winner. It provided the most consistent performance with low memory usage, effectively solving instances up to N=200. This research underscores that for large-scale optimization problems, choosing the right metaheuristic strategy is often more critical than raw computing power.",
+    link: "https://ieeexplore.ieee.org/document/11321408"
+  },
+
 ];
 
 export const themeDisclaimers = {
